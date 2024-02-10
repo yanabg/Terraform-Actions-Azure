@@ -28,7 +28,7 @@ resource "random_integer" "ri" {
 #}
 
 resource "azurerm_resource_group" "rg" {
-  name     = "${var.resource_group_name}${random_integer.ri.result}"
+  name     = "${var.resource_group_name}-${random_integer.ri.result}"
   location = var.resource_group_location
 }
 resource "azurerm_service_plan" "asp" {
@@ -40,7 +40,7 @@ resource "azurerm_service_plan" "asp" {
 }
 
 resource "azurerm_linux_web_app" "alwa" {
-  name                = "${var.app_service_name}${random_integer.ri.result}"
+  name                = "${var.app_service_name}-${random_integer.ri.result}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   service_plan_id     = azurerm_service_plan.asp.id
