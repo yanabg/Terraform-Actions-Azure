@@ -23,7 +23,7 @@ jobs:
 
       # Install the latest version of the Terraform CLI
       - name: Setup Terraform
-        run: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v1
 
       # Initialize a new or existing Terraform Working directory
       # Creating install files, loading any remote state, downloading modules, etc.
