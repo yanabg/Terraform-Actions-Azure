@@ -7,6 +7,13 @@ terraform {
     }
   }
 }
+backend "azurerm" {
+  resource_group_name   = "StorageRG"
+  storage_account_name  = "taskboardstorageybg"
+  container_name        = "taskboardcontainer"
+  key                   = "taskboard.tfstate"
+}
+
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
 
