@@ -33,7 +33,7 @@ variable "sql_administrator_login_username" {
   description = "admin username"
 }
 
-variable "sql_administrator_password" {
+variable "sql_administrator_login_password" {
   type        = string
   description = "sql admin pass"
 }
