@@ -1,0 +1,45 @@
+name: Terraform Test Workflow
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  #workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  terraform-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out the repository to the gitHub Actions runner
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Install the latest version of the Terraform CLI
+      - name: Setup Terraform
+        run: hashicorp/setup-terraform@v1
+
+      # Initialize a new or existing Terraform Working directory
+      # Creating install files, loading any remote state, downloading modules, etc.
+      - name: Initialize working directory
+        run: terraform init
+        
+      # Checks that all Terraform configuration files adhere to a cannonical format
+      - name: Format configuration files
+        run: terraform fmt -check -recursive
+      
+      # Validate Terraform files
+      - name: Validate configuration
+        run: terraform validate
+
+      # Add your build step here if needed
+      #- name: Build terraform infrastrucutre
+      #  run: terraform apply -auto-approve
+  
+  
