@@ -7,6 +7,7 @@ terraform {
     }
   }
 }
+
 backend "azurerm" {
   resource_group_name   = "StorageRG"
   storage_account_name  = "taskboardstorageybg"
@@ -14,9 +15,7 @@ backend "azurerm" {
   key                   = "taskboard.tfstate"
 }
 
-# Configure the Microsoft Azure Provider
 provider "azurerm" {
-
   features {}
 }
 
