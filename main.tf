@@ -60,7 +60,7 @@ resource "azurerm_mssql_server" "sqlserver" {
   location                     = azurerm_resource_group.rg.location
   version                      = "12.0"
   administrator_login          = var.sql_administrator_login_username
-  administrator_login_password = var.sql_administrator_password
+  administrator_login_password = var.sql_administrator_login_password
 }
 
 resource "azurerm_mssql_database" "database" {
