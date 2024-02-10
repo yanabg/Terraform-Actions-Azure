@@ -9,27 +9,26 @@ on:
       - main
 
 jobs:
-  terraform:
+  storage_provision:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+      - name: Create Resource Group
+        run: |
+          az group create --name StorageRG --location "North Europe"
 
-      - name: Terraform Init
-        run: terraform init
+      - name: Create Storage Account
+        run: |
+          az storage account create --name taskboardstorageybg --resource-group StorageRG --location "North Europe" --sku Standard_LRS
 
-      - name: Terraform Plan Resource Group
-        run: terraform plan -out=tfplan_rg -target=azurerm_resource_group.rgs
-
-      - name: Terraform Apply Resource Group
-        run: terraform apply tfplan_rg -auto-approve
-
-      - name: Terraform Plan Storage Account
-        run: terraform plan -out=tfplan -target=azurerm_storage_account.taskboardstorageybg
-
-      - name: Terraform Apply Storage Account
-        run: terraform apply tfplan -auto-approve
+      - name: Create Storage Container
+        run: |
+          az storage container create --name taskboardcontainer --account-name taskboardstorageybg
