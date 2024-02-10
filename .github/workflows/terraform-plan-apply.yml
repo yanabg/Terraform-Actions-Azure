@@ -57,7 +57,7 @@ jobs:
           - name: Checkout repository
             uses: actions/checkout@v2
 
-          - name: Install terraform CLI
+          - name: Install Terraform CLI
             uses: hashicorp/setup-terraform@v1
 
           - name: Initialize Terraform Working Directory
