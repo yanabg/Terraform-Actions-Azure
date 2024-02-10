@@ -22,8 +22,14 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Terraform Plan
+      - name: Terraform Plan Resource Group
+        run: terraform plan -out=tfplan_rg -target=azurerm_resource_group.rgs
+
+      - name: Terraform Apply Resource Group
+        run: terraform apply tfplan_rg -auto-approve
+
+      - name: Terraform Plan Storage Account
         run: terraform plan -out=tfplan -target=azurerm_storage_account.taskboardstorageybg
 
-      - name: Terraform Apply
+      - name: Terraform Apply Storage Account
         run: terraform apply tfplan -auto-approve
