@@ -1,7 +1,3 @@
-provider "azurerm" {
-  features {}
-}
-
 resource "azurerm_resource_group" "rgs" {
   name     = "StorageRG"
   location = "North Europe"
