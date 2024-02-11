@@ -1,0 +1,22 @@
+name: Assign Contributor Role
+
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: # This triggers the workflow manually
+
+jobs:
+  assign-role:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+
+      - name: Assign Contributor Role
+        run: |
+          az role assignment create --assignee 61934ba6-9b0b-4185-ba20-068d838db652 --role Contributor --scope 86db3548-5854-4928-be1e-0d991fad3ef9
+        
