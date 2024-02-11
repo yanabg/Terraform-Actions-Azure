@@ -1,5 +1,5 @@
 resource_group_name                 = "TaskBoardRG"
-storage_account_resource_group_name = "StorageRG"
+storage_resource_group_name         = "StorageRG"
 resource_group_location             = "West Europe"
 app_service_plan_name               = "task-board-plan"
 app_service_name                    = "task-board"
