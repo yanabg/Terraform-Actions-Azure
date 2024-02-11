@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "rgs" {
-  name     = var.storage_account_resource_group_name
+  name     = var.storage_resource_group_name
   location = "North Europe"
 }
 
