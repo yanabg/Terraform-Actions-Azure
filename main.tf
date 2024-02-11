@@ -22,6 +22,10 @@ provider "azurerm" {
   tenant_id       = var.ARM_TENANT_ID
 }
 
+data "azurerm_resource_group" "rgs" {
+  name = var.storage_resource_group_name
+}
+
 resource "random_integer" "ri" {
   min = 1000
   max = 9999
