@@ -51,3 +51,23 @@ variable "storage_resource_group_name" {
   type        = string
   description = "The name of the resource group for storage account"
 }
+
+variable "ARM_CLIENT_ID" {
+  type        = string
+  description = "The client ID of the Azure service principal"
+}
+
+variable "ARM_CLIENT_SECRET" {
+  type        = string
+  description = "The client secret of the Azure service principal"
+}
+
+variable "ARM_SUBSCRIPTION_ID" {
+  type        = string
+  description = "The subscription ID of the Azure subscription"
+}
+
+variable "ARM_TENANT_ID" {
+  type        = string
+  description = "The tenant ID of the Azure Active Directory"
+}
