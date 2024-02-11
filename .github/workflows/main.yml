@@ -1,0 +1,26 @@
+name: Print Service Principal Roles
+
+on:
+  workflow_dispatch: # This triggers the workflow manually
+
+jobs:
+  print-roles:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Fetch Service Principal Roles
+        run: |
+          # Fetch roles using Azure CLI
+          az role assignment list --assignee-object-id 61934ba6-9b0b-4185-ba20-068d838db652 --output table
+
+          # Or, fetch roles using PowerShell
+          # Get-AzRoleAssignment -ObjectId 61934ba6-9b0b-4185-ba20-068d838db652
+
+      - name: Print Service Principal Roles
+        run: |
+          echo "Roles for Service Principal:"
+          # Print the fetched roles here
