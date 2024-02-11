@@ -47,3 +47,7 @@ variable "repo_url" {
   type        = string
   description = "repo URL"
 }
+variable "storage_resource_group_name" {
+  type        = string
+  description = "The name of the resource group for storage account"
+}
