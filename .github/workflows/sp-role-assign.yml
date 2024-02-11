@@ -2,8 +2,8 @@ name: Assign Contributor Role
 
 
 on:
-  push:
-    branches: [ main ]
+  #push:
+    #branches: [ main ]
   workflow_dispatch: # This triggers the workflow manually
 
 jobs:
