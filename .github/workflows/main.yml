@@ -14,12 +14,12 @@ jobs:
 
       - name: Fetch Service Principal Roles
         run: |
-          # Fetch roles using Azure CLI
-          az role assignment list --all --query "[?principalId=='61934ba6-9b0b-4185-ba20-068d838db652']" --output table
-          # Or, fetch roles using PowerShell
-          # Get-AzRoleAssignment -ObjectId 61934ba6-9b0b-4185-ba20-068d838db652
+          # Fetch roles using Azure CLI and store the output in a variable
+          roles=$(az role assignment list --all --query "[?principalId=='61934ba6-9b0b-4185-ba20-068d838db652']" --output table)
+          
 
       - name: Print Service Principal Roles
         run: |
           echo "Roles for Service Principal:"
-          # Print the fetched roles here
+          # Print the fetched roles stored in the variable
+          echo "$roles"
