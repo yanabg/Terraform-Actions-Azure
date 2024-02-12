@@ -19,6 +19,8 @@ jobs:
   storage_provision:
     runs-on: ubuntu-latest
     needs: print-cache-directory
+    outputs: 
+      storage_provision_success: ${{ steps.create_resource_group.outputs.success }}    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -44,6 +46,7 @@ jobs:
         if: steps.check_rg.outputs.exists != 'true'
         run: |
           az group create --name StorageRG --location "North Europe"
+            
 
       - name: Create Storage Account
         if: steps.check_storage.outputs.exists != 'true'
