@@ -33,13 +33,13 @@ jobs:
       - name: Check if Resource Group exists
         id: check_rg
         run: |
-          az group show --name StorageRG
+          az group show --name StorageRG >/dev/null 2>&1 || { echo "::set-output name=exists::false"; exit 0; }
           echo "::set-output name=exists::true"
 
       - name: Check if Storage Account exists
         id: check_storage
         run: |
-          az storage account show --name taskboardstorageybg --resource-group StorageRG
+          az storage account show --name taskboardstorageybg --resource-group StorageRG >/dev/null 2>&1 || { echo "::set-output name=exists::false"; exit 0; }
           echo "::set-output name=exists::true"
 
       - name: Create Resource Group
