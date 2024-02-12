@@ -1,4 +1,4 @@
-# Azure Provider source and version being used
+3# Azure Provider source and version being used
 terraform {
   required_providers {
     azurerm = {
@@ -11,8 +11,6 @@ backend "azurerm" {
   storage_account_name       = "taskboardstorageybg"
   container_name             = "taskboardcontainer"
   key                        = "taskboard.tfstate"
-  #skip_provider_registration = true
-  #lock_enabled               = false
 }
 }
 
