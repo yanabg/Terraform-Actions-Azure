@@ -32,9 +32,7 @@ jobs:
             echo "Cache directory: ${{ runner.workspace }}/.cache"
   terraform-plan:
     runs-on: ubuntu-latest
-    needs:
-      - print-cache-directory
-      - storage_provision  # Referencing the correct job name
+    needs: print-cache-directory
     steps:
       # Checks-out the repository to the gitHub Actions runner
       - name: Checkout repository
