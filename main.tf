@@ -11,8 +11,8 @@ backend "azurerm" {
   storage_account_name       = "taskboardstorageybg"
   container_name             = "taskboardcontainer"
   key                        = "taskboard.tfstate"
-  skip_provider_registration = true
-  lock_enabled               = false
+  #skip_provider_registration = true
+  #lock_enabled               = false
 }
 }
 
