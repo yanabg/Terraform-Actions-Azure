@@ -28,16 +28,25 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Debug Azure Login
+      - name: Check if Resource Group exists
+        id: check_rg
         run: |
-          az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
-          az account show
+          az group show --name StorageRG
+          echo "::set-output name=exists::true"
+
+      - name: Check if Storage Account exists
+        id: check_storage
+        run: |
+          az storage account show --name taskboardstorageybg --resource-group StorageRG
+          echo "::set-output name=exists::true"
 
       - name: Create Resource Group
+        if: steps.check_rg.outputs.exists != 'true'
         run: |
           az group create --name StorageRG --location "North Europe"
 
       - name: Create Storage Account
+        if: steps.check_storage.outputs.exists != 'true'
         run: |
           az storage account create --name taskboardstorageybg --resource-group StorageRG --location "North Europe" --sku Standard_LRS
 
